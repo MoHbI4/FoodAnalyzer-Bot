@@ -1,5 +1,20 @@
 # Food Bot
 
+```mermaid
+flowchart TD
+    A[User sends photo] --> B{Is user subscribed?}
+    B -- No --> C[Ask user to subscribe]
+    B -- Yes --> D[Upload photo to Imgur/VPS]
+    D --> E[Send image link to OpenAI Vision API]
+    E --> F[Receive analysis result]
+    F --> G[Send result to user]
+    G --> H[Update stats in Redis]
+    H --> I[Log activity]
+    subgraph Admin
+        J[Change prompt / View stats]
+    end
+```
+
 Асинхронный Telegram-бот для анализа фото блюд с помощью OpenAI Vision API. Поддерживает проверку подписки на канал, работу с публичными и приватными каналами, хранение статистики и промптов в Redis, а также удобные админ-команды.
 
 ## Возможности
@@ -81,7 +96,7 @@ services:
    ```
 
 ## Рекомендации по настройке канала
-- Для публичного канала используйте username (например, dotboot)
+- Для публичного канала используйте username
 - Для приватного — используйте invite-link в сообщениях (поддержка в коде)
 - Бот должен быть подписан на канал и иметь права видеть участников (лучше сделать ботом-админом)
 
