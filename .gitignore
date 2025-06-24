@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+*.egg
+*.env
+.env
+.env.*
+.venv/
+venv/
+build/
+dist/
+*.log
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Docker
+*.pid
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Redis dump
+dump.rdb
+
+# Images/uploads
+uploads/
+tmp/
+*.tmp
+
+# Ignore secrets
+*.secret
+secrets.json
+
+# Ignore test cache
+.cache/
+pytest_cache/
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Ignore mypy
+.mypy_cache/
+.dmypy.json
+
+# Ignore local config
+config.local.py

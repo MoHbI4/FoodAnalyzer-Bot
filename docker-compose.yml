@@ -1,0 +1,35 @@
+services:
+  redis:
+    image: redis:8-alpine
+    container_name: dotboot_redis
+    restart: always
+    volumes:
+      - redis-data:/data
+    # ports:
+    #   - "6379:6379"
+    # Если вы хотите включить парольную защиту — раскомментируйте и добавьте REDIS_PASSWORD в .env
+    # command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+
+
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: food_bot:2.0.0
+    container_name: food_bot
+    restart: unless-stopped
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    environment:
+      - TZ=Europe/Moscow
+      # Переопределяем хост/порт Redis на внутреннюю сеть
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://redis:6379/0
+      # Если вы включили requirepass, подключаем пароль из .env
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+
+volumes:
+  redis-data:

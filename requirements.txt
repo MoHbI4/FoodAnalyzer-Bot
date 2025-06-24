@@ -1,0 +1,6 @@
+aiogram
+openai
+redis
+dotenv
+pydantic
+httpx
